@@ -1,0 +1,175 @@
+= PHP
+:toc:
+:source-highlighter: highlight.js
+
+Linguaggio di scripting, dinamico, utilizzato sul lato server.
+Lo script viene ri-eseguito per ogni richiesta;
+ciò vuol dire che le variabili vengono ogni volta ricaricate.
+Questo avrà importanza nell'interazione con il webserver.
+
+== Sintassi
+
+=== Variabili
+
+[source,php]
+----
+$nomeVar = "abc";
+$nomeVar = 42;
+
+echo $nomeVar + 10;
+echo($nomeVar . "def", "hello world");
+----
+
+=== Funzioni
+
+[source, php]
+----
+function nomeFunc($param1, $param2) {
+    $param1 += 10;
+    return $param1 . $param2;
+}
+----
+
+=== Oggetti
+
+[source, php]
+----
+class NomeClasse1 {
+    public $campoPubblico;
+    private $campoPrivato;
+    public $campoDefault = "ciao";
+
+    public function __construct($a, $b) {
+        $this->campoPrivato = $a + $b;
+    }
+
+    public function nomeMetodo($param1) {
+        echo $this->campoPubblico + $param1;
+    }
+}
+
+$ogg = new NomeClasse1();
+
+$ogg->nomeCampo1 = "rick & morty";
+echo $ogg->nomeCampo1;
+
+$ogg->nomeMetodo(29);
+----
+
+== Stringhe
+
+Possono essere delimitate da virgolette singole (`'`), oppure doppie (`"`).
+Le stringhe dichiarate con la seconda forma supportano l'espansione delle variabili:
+
+[source, php]
+----
+$asd = 30;
+$lettere = ["a", "b", "c"];
+
+echo 'ciao mondo!';
+echo 'ciao mondo $asd!'; // Non funziona, stampa "ciao mondo !"
+echo "ciao mondo $asd!"; // Stampa "ciao mondo 30!"
+echo "lettera: $lettere[1]"; // Stampa "lettera: b"
+----
+
+Quando usare l'espansione non è possibile, è possibile usare l'operatore di concatenazione:
+
+[source, php]
+----
+$asd = 30;
+
+echo 'ciao mondo ' . $asd . '!'; // Stampa "ciao mondo 30!"
+----
+
+=== Funzioni utili
+
+Queste sono funzioni standard in php.
+Purtroppo non possono essere chiamate come metodi, ma solo come funziona.
+Quindi, per esempio, al posto di scrivere `"ciao"->len()` bisogna scrivere `"strlen("ciao")`.
+Ulteriori informazioni si possono trovare nel https://www.php.net/manual/en/ref.strings.php[manuale].
+
+- https://www.php.net/manual/en/function.strlen.php[strlen]
+- https://www.php.net/manual/en/function.strpos.php[strpos], https://www.php.net/manual/en/function.stripos.php[stripos]
+- https://www.php.net/manual/en/function.str-split.php[str_split]
+- https://www.php.net/manual/en/function.substr.php[substr],
+- https://www.php.net/manual/en/function.substr-count.php[substr_count],
+- https://www.php.net/manual/en/function.trim.php[trim], https://www.php.net/manual/en/function.ltrim.php[ltrim], https://www.php.net/manual/en/function.rtrim.php[rtrim]
+
+=== Funzioni utili, ma meno
+
+- https://www.php.net/manual/en/function.str_starts_with.php[str_starts_with], https://www.php.net/manual/en/function.str_ends_with.php[str_ends_with]
+- https://www.php.net/manual/en/function.str_split.php[str_split]
+- https://www.php.net/manual/en/function.str_repeat.php[str_repeat]
+- https://www.php.net/manual/en/function.str_contains.php[str_contains]
+- https://www.php.net/manual/en/function.ucfirst.php[ucfirst], https://www.php.net/manual/en/function.ucwords.php[ucwords], https://www.php.net/manual/en/function.lcfirst.php[lcfirst], https://www.php.net/manual/en/function.lcwords.php[lcwords]
+
+
+== Array
+
+In PHP, un array è una struttura dati che contiene un insieme di chiavi e di valori,
+tali che ogni chiave sia associata ad esattamente un valore.
+
+Le chiavi possono essere specificate esplicitamente, e in tal caso l'array viene chiamato "associativo".
+Se, invece, non vengono specificate, l'array usa come chiave la posizione di ogni elemento.
+
+[source, php]
+----
+$arr = array(1, 2, 3); // `array()` può essere sostituito con `[]`
+$arr2 = [1, 3, 2];
+
+$assoc = [
+    "key1" => "cls",
+    "key2" => "asd",
+    1.5 => "sos",
+];
+
+echo $arr[1] == $arr2[2]; // `true`
+
+unset($assoc["key2"]);
+----
+
+Per eliminare un elemento da un array associativo, si usa la funzione `unset`.
+
+[source, php]
+----
+unset($assoc["key2"]); // Rimuove "asd" dall'array
+unset($assoc); // Elimina tutto l'array
+----
+
+Se `unset` viene chiamata su un array non associativo, bisogna prestare attenzione in quanto gli indici non vengono modificati:
+
+[source, php]
+----
+print_r($arr);
+unset($arr[2]);
+print_r($arr);
+----
+
+L'esempio produce il seguente output. Notare che il secondo array contiene un elemeneto
+in posizione 0 e uno in posizione 2, ma nessuno in posizione 1
+
+[source]
+----
+Array
+(
+    [0] => 1
+    [1] => 2
+    [2] => 3
+)
+Array
+(
+    [0] => 1
+    [2] => 3
+)
+----
+
+TODO: foreach
+
+=== Funzioni utili
+
+Queste sono funzioni standard in php.
+Purtroppo non possono essere chiamate come metodi, ma solo come funziona.
+Quindi, per esempio, al posto di scrivere `['c', 'i', 'a', 'o']->len()` bisogna scrivere `"strlen("ciao")`.
+Ulteriori informazioni si possono trovare nel https://www.php.net/manual/en/ref.strings.php[manuale].
+
+- explode, implode
