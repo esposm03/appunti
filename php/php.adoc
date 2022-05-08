@@ -97,11 +97,11 @@ Ulteriori informazioni si possono trovare nel https://www.php.net/manual/en/ref.
 
 === Funzioni utili, ma meno
 
-- https://www.php.net/manual/en/function.str_starts_with.php[str_starts_with], https://www.php.net/manual/en/function.str_ends_with.php[str_ends_with]
-- https://www.php.net/manual/en/function.str_split.php[str_split]
-- https://www.php.net/manual/en/function.str_repeat.php[str_repeat]
-- https://www.php.net/manual/en/function.str_contains.php[str_contains]
-- https://www.php.net/manual/en/function.ucfirst.php[ucfirst], https://www.php.net/manual/en/function.ucwords.php[ucwords], https://www.php.net/manual/en/function.lcfirst.php[lcfirst], https://www.php.net/manual/en/function.lcwords.php[lcwords]
+- https://www.php.net/manual/en/function.str-starts-with.php[str_starts_with], https://www.php.net/manual/en/function.str-ends-with.php[str_ends_with]
+- https://www.php.net/manual/en/function.str-split.php[str_split]
+- https://www.php.net/manual/en/function.str-repeat.php[str_repeat]
+- https://www.php.net/manual/en/function.str-contains.php[str_contains]
+- https://www.php.net/manual/en/function.ucfirst.php[ucfirst], https://www.php.net/manual/en/function.ucwords.php[ucwords], https://www.php.net/manual/en/function.lcfirst.php[lcfirst]
 
 
 == Array
